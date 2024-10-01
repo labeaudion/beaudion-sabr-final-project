@@ -6,7 +6,7 @@
   The main goal of this project is to develop a model capable of predicting temperature anomalies based on the moon phases and other meterological factors. Some other goals include gathering and analying past weather data including temperature, humidity, wind speed, and possibly other meteorological factors, and building a predictive model that can assess temperature deviations using the moon phase. 
 
 **Data Collection:**
-  We will be using web scaping techniques to pull historical weather data from souces like Wunderground or NOAA. Historical moon phase information will be collected from APIs such as the US Naval Observatory or Sunrise=Sunset.org. We will be collecting lunar phases for each date and time in the weather data set. 
+  We will be using web scaping techniques to pull historical weather data from sources like Wunderground or NOAA. Historical moon phase information will be collected from APIs such as the US Naval Observatory or Sunrise=Sunset.org. We will be collecting lunar phases for each date and time in the weather data set. 
 
 **Data Modeling:**
   We will be using a linear regression model to understand the relationship between moon phases and temperature deviations. We are open to exploring more modeling techniques to find one that best fits our data. 
