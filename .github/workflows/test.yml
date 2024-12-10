@@ -21,12 +21,12 @@ jobs:
       with:
         python-version: 3.9
 
-    - name: Install dependencies
+    - name: Install pytest globally
+      run: pip install pytest
+
+    - name: Install other dependencies
       run: |
-        python -m venv env
-        source env/bin/activate
         pip install -r requirements.txt
 
     - name: Run tests
-      run: |
-        pytest tests/
+      run: pytest tests/
