@@ -1,3 +1,8 @@
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
+import pytest
+
 def test_data_integrity():
     df = pd.read_csv("cleaned_weather_data.csv")
     # Check that the dataset is not empty
