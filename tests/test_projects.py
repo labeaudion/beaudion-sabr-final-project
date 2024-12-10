@@ -13,7 +13,6 @@ def test_data_integrity():
     assert df.isnull().sum().sum() == 0, "Dataset contains null values"
   
 def test_data_splitting():
-    df = pd.read_csv("final_report_data/cleaned_weather_data.csv")
     X = df.drop(columns=['mean_temp'])
     y = df['mean_temp']
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
