@@ -3,8 +3,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 import pytest
 
+df = pd.read_csv("final_report_data/cleaned_weather_data.csv")
 def test_data_integrity():
-    df = pd.read_csv("cleaned_weather_data.csv")
     # Check that the dataset is not empty
     assert df.shape[0] > 0, "Dataset is empty"
     # Check that the required target column is present
@@ -13,7 +13,6 @@ def test_data_integrity():
     assert df.isnull().sum().sum() == 0, "Dataset contains null values"
   
 def test_data_splitting():
-    df = pd.read_csv("cleaned_weather_data.csv")
     X = df.drop(columns=['mean_temp'])
     y = df['mean_temp']
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
@@ -23,7 +22,6 @@ def test_data_splitting():
     assert X_test.shape[0] == int(0.2 * len(X)), "Test set size is incorrect"
   
 def test_rf_model_training():
-    df = pd.read_csv("cleaned_weather_data.csv")
     X = df.drop(columns=['mean_temp'])
     y = df['mean_temp']
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
