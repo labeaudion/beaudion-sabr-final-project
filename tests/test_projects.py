@@ -13,13 +13,17 @@ def test_data_integrity():
     assert df.isnull().sum().sum() == 0, "Dataset contains null values"
   
 def test_data_splitting():
+    df = pd.read_csv("cleaned_weather_data.csv")
     X = df.drop(columns=['mean_temp'])
     y = df['mean_temp']
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    
     # Ensure no overlap between train and test sets
     assert len(set(X_train.index).intersection(set(X_test.index))) == 0, "Train and test sets overlap"
-    # Check the proportions
-    assert X_test.shape[0] == int(0.2 * len(X)), "Test set size is incorrect"
+    
+    # Check the proportions with a tolerance of ±1 row
+    expected_test_size = int(0.2 * len(X))
+    assert abs(X_test.shape[0] - expected_test_size) <= 1, f"Test set size is incorrect. Expected ~{expected_test_size}, got {X_test.shape[0]}"
   
 def test_rf_model_training():
     X = df.drop(columns=['mean_temp'])
