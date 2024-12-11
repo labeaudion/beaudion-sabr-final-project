@@ -80,6 +80,8 @@ The data cleaning process started with adding the moon phases data to each city�
 The exact date was simplified to only include the year, as using the full date would have made the model too dependent on it rather than focusing on the moon phases. Non-numeric columns like 'Time (UT)', 'sunset (iso8601)', and 'sunrise (iso8601)' were removed as well. Looking through the remaining columns, some seemed redundant or overly correlated with temperature, so several were dropped, including 'daylight_duration (s)', 'sunshine_duration (s)', 'shortwave_radiation_sum (MJ/m²)', 'reference_evapotranspiration (mm)', 'wind_gusts_10m_max (mp/h)', 'wind_direction_10m_dominant (°)', 'precipitation_sum (mm)', and 'rain_sum (mm)'.
 At this point, the moon phases still showed little correlation with the weather data, but they had some slight effect on variables like wind speed, weather code, and precipitation, which might still offer insights.
 
+![correlation matrix](final_report_images/correlation_matrix.png)
+
 ## **Preliminary Analysis**
 
 Looking at the initial statistics, the differences between the cities are clear: Los Angeles has higher average temperatures and a more stable climate, while Boston and Chicago show larger seasonal changes, with more extreme temperatures and wind speeds. The moon phases are evenly distributed, making it easy to compare their potential effects.
