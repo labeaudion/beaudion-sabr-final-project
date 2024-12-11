@@ -24,18 +24,18 @@
 (Please see pdf version for visuals)
 
 
-**Introduction**
+##**Introduction**
 
 This project seeks to explore the potential relationship between moon phases and fluctuations in weather patterns, aiming to assess whether lunar cycles—specifically the different phases of the moon—can serve as reliable predictors for various meteorological variables, including temperature, precipitation, and wind speed. For centuries, people have speculated about the influence of the moon on the Earth's weather systems, with many traditional beliefs linking the lunar cycle to patterns in nature, human behavior, and even environmental changes. The moon’s gravitational pull is well-known for influencing tides and ocean currents, but its potential effects on weather, particularly atmospheric phenomena, remain less understood and have been subject to both scientific inquiry and folklore.
 This study builds on the hypothesis that the moon's gravitational forces and associated cycles could have a subtle, yet measurable, impact on weather patterns. The primary goal is to systematically examine whether the phases of the moon—the new moon, first quarter, full moon, and last quarter—are associated with any observable fluctuations in key weather variables such as temperature, precipitation, and wind speed. To test this hypothesis, we have focused on three cities with varying climates and geographical contexts: Chicago, IL, Los Angeles, CA, and Boston, MA. Each of these cities represents a distinct climate type—Chicago with its continental climate, Los Angeles with its mild Mediterranean climate, and Boston with its coastal, seasonal climate. By examining these diverse locations, we aim to determine whether the lunar influence on weather is universal or region-specific, offering a more comprehensive understanding of the potential relationship between moon phases and atmospheric conditions.
 
-_Data Collection_
+###_Data Collection_
 
 The data cleaning process involved several key steps to prepare the datasets for analysis. Weather data was sourced from the Open-Meteo API, covering the period from October 29, 2019, to October 29, 2024. This dataset includes daily minimum and maximum temperatures (in °F), total precipitation (in mm), maximum wind speed (in mph), maximum wind gusts (in mph), and weather code for three cities: Los Angeles, Chicago, and Boston. Simultaneously, moon phase data was obtained from the USNO Astronomical Application API, spanning the same timeframe and detailing the different moon phases (New Moon, First Quarter, Full Moon, Last Quarter), along with their corresponding dates and times in Universal Time (UT). To create a comprehensive dataset, we combined the moon phase data with the weather data for each city based on matching dates. Additionally, we computed and added two new columns—range and mean temperatures (in °F)—to enhance the dataset for further analysis.
 
 
 
-**How to Build and Run the Code**
+###**How to Build and Run the Code**
 
 This section outlines the steps required to set up the environment, install dependencies, prepare data, and execute the code for the project.
 1. _Set Up Your Environment_
@@ -71,16 +71,16 @@ Place the cleaned weather dataset (cleaned_weather_data.csv) in the appropriate 
 make run
 
 
-**Data Cleaning and Processing**
+##**Data Cleaning and Processing**
 
 The data cleaning process started with adding the moon phases data to each city’s dataset. Since the moon phase data only included the main phases—new moon, first quarter, full moon, and last quarter—additional in-between phases were added to ensure we could include as much weather data as possible. Afterward, the datasets for each city were combined, with three new columns titled 'LA', 'Boston', and 'Chicago' to indicate which city each row belonged to, using 1 for the respective city and 0 otherwise. The moon phases were then encoded as numbers to make them easier to work with in the model.
 
-**Feature Selection**
+###**Feature Selection**
 
 The exact date was simplified to only include the year, as using the full date would have made the model too dependent on it rather than focusing on the moon phases. Non-numeric columns like 'Time (UT)', 'sunset (iso8601)', and 'sunrise (iso8601)' were removed as well. Looking through the remaining columns, some seemed redundant or overly correlated with temperature, so several were dropped, including 'daylight_duration (s)', 'sunshine_duration (s)', 'shortwave_radiation_sum (MJ/m²)', 'reference_evapotranspiration (mm)', 'wind_gusts_10m_max (mp/h)', 'wind_direction_10m_dominant (°)', 'precipitation_sum (mm)', and 'rain_sum (mm)'.
 At this point, the moon phases still showed little correlation with the weather data, but they had some slight effect on variables like wind speed, weather code, and precipitation, which might still offer insights.
 
-**Preliminary Analysis**
+##**Preliminary Analysis**
 
 Looking at the initial statistics, the differences between the cities are clear: Los Angeles has higher average temperatures and a more stable climate, while Boston and Chicago show larger seasonal changes, with more extreme temperatures and wind speeds. The moon phases are evenly distributed, making it easy to compare their potential effects.
 
@@ -89,7 +89,7 @@ Looking more closely at the relationship between moon phases and temperature, Lo
 The data suggested that moon phases alone aren’t strong predictors of temperature or wind speed. Instead, other factors like seasonal changes and geographical differences seem to play a bigger role. We used further analysis, like statistical tests to check for significant differences between moon phases, exploring how moon phases interact with other weather variables, such as precipitation or extreme conditions. These early observations and understanding whether moon phases contribute in smaller, less obvious ways to weather patterns.
 
 
-**Initial Model Testing**
+##**Initial Model Testing**
 
 To determine which machine learning models would be most effective for our dataset, we conducted an initial model fit across eight different algorithms. The models were evaluated using a range of performance metrics: Mean Squared Error (MSE), R-squared (R²), and Adjusted R-squared (Adj-R²). These metrics provided insight into how well each model captured the underlying patterns in the data and how suitable each was for further analysis and hyperparameter tuning. We tested the following eight models:
 	1. Linear Regression
@@ -104,48 +104,48 @@ To determine which machine learning models would be most effective for our datas
 Each model was evaluated based on how well it performed in terms of the predictive accuracy (R²) and error (MSE), along with the adjusted goodness-of-fit measure (Adj-R²), which accounts for model complexity.
 
 
-_Linear Regression_
+###_Linear Regression_
 
 The Linear Regression model, without hyperparameter tuning, produced the following results: a Mean Squared Error (MSE) of 214.43, an R-squared (R²) of 0.16, and an Adjusted R-squared (Adj. R²) of 0.15. The MSE indicates that the model's predictions are relatively inaccurate, suggesting that there is room for improvement in model performance. With an R² of 0.16, the model explains about 16% of the variation in the target variable, which means it fails to capture the majority of the underlying patterns. The Adjusted R², which accounts for the number of predictors, is slightly lower, supporting the idea that while the model is making some progress, it could perform better with further tuning or alternative approaches.
 
 
 
-_Decision Trees_
+###_Decision Trees_
 
 The Decision Trees model, without hyperparameter tuning, produced the following results: a Mean Squared Error (MSE) of 285.5, an R-squared (R²) of -0.12, and an Adjusted R-squared (Adj. R²) of -0.13. The MSE indicates that the model fails to explain any meaningful variation in the target variable and actually performs worse than a simple mean-based model (which would have an R² of 0). This negative R² value indicates that the model is not capturing useful patterns in the data. With an R² of -0.12, the model explains about none of the variation in the target variable, which means it captures some patterns, but there's still a significant amount of variance left unexplained. The Adjusted R², which accounts for the number of predictors, is even lower, further suggesting that the inclusion of additional features has not improved the model's performance and may have even contributed to overfitting. These results indicate that the Decision Trees model requires significant tuning in order to improve predictive accuracy.
 
 
-_Random Forest_
+###_Random Forest_
 
 The Random Forest model, without hyperparameter tuning, produced the following results: a Mean Squared Error (MSE) of 149.97, an R-squared (R²) of 0.41, and an Adjusted R-squared (Adj. R²) of 0.41. The MSE indicates that the model's predictions are somewhat off from the actual values, suggesting there is room for improvement in accuracy. With an R² of 0.41, the model explains about 41% of the variation in the target variable, meaning it captures some of the underlying patterns but leaves a significant portion of the variance unexplained. The Adjusted R² accounts for the number of predictors and is the same as the R² in this case. This indicates that the number of features is relatively appropriate for the given data. While the model is providing some useful insights, there is still considerable potential for improvement through further tuning of the model.
 
 
 
-_XGBoost_
+###_XGBoost_
 
 The XGBoost model, without hyperparameter tuning, produced the following results: a Mean Squared Error (MSE) of 159.06, an R-squared (R²) of 0.38, and an Adjusted R-squared (Adj. R²) of 0.37. The MSE indicates that the model's predictions are somewhat off from the actual values, showing there's potential for improvement. With an R² of 0.38, the model explains about 38% of the variation in the target variable, which means it captures some patterns, but there's still a significant amount of variance left unexplained. The Adjusted R², which accounts for the number of predictors, is slightly lower, supporting the idea that while the model is making some progress, it could perform better with further tuning or alternative approaches.
 
 
 
-_Gradient Boosting_
+###_Gradient Boosting_
 
 The Gradient Boosting model, without hyperparameter tuning, produced the following results: Mean Squared Error (MSE) of 146.22, an R-squared (R²) of 0.43, and an Adjusted R-squared (Adj. R²) of 0.42. The MSE indicates that the model’s predictions are relatively close to the actual values, though there’s still some room for improvement. With an R² of 0.43, the model accounts for 43% of the variability in the target variable, suggesting that it has a moderate understanding of the data's patterns. The Adjusted R² is slightly lower, reflecting the model’s performance while accounting for the number of predictors used. Overall, while the model performs reasonably well, there is still potential for better accuracy through further optimization.
 
 
 
-_K-Nearest Neighbors (KNN)_
+###_K-Nearest Neighbors (KNN)_
 
 The K-Nearest Neighbors (KNN) model, without hyperparameter tuning, produced the following results: Mean Squared Error (MSE) of 202.46, an R-squared (R²) of 0.21, and an Adjusted R-squared (Adj. R²) of 0.20. The high MSE suggests that the model's predictions are quite far from the actual values, indicating a need for improvement in its predictive ability. With an R² of just 0.21, the model only explains 21% of the variation in the target variable, showing that it captures only a small portion of the underlying patterns in the data. The Adjusted R², which adjusts for the number of predictors, further reflects the model's limited explanatory power. These results highlight the potential for improving the model, whether through hyperparameter tuning or exploring alternative models.
 
 
 
-_Support Vector Machine (SVM)_
+###_Support Vector Machine (SVM)_
 
 The Support Vector Machine model, without hyperparameter tuning, produced the following results: a Mean Squared Error (MSE) of 180.13, an R-squared (R²) of 0.30, and an Adjusted R-squared (Adj. R²) of 0.29. The MSE indicates that the model's predictions are moderately off from the actual values, suggesting there is room for improvement in predictive accuracy. With an R² of 0.30, the model explains about 30% of the variation in the target variable, meaning it captures some patterns, but still leaves a large portion of the variance unexplained. The Adjusted R², which accounts for the number of predictors, is slightly lower, further suggesting that the model is not fully utilizing the available features and could potentially benefit from additional tuning.
 
 
 
-_Long Short-Term Memory (LSTM)_
+###_Long Short-Term Memory (LSTM)_
 
 The Long Short-Term Memory  model, without hyperparameter tuning, produced the following results: a Mean Squared Error (MSE) of 247.11, an R-squared (R²) of 0.03, and an Adjusted R-squared (Adj. R²) of 0.03. The MSE indicates that the model's predictions are considerably off from the actual values, suggesting that there is significant room for improvement in accuracy. With an R² of 0.03, the model explains about 3% of the variation in the target variable, meaning it fails to capture most of the underlying patterns in the data. The Adjusted R², which takes into account the number of predictors, is the same as the R² in this case, highlighting that the model's complexity does not improve its explanatory power. This suggests that the LSTM model, as currently configured, is not effectively using the data and may require intensive tuning.
 
@@ -162,7 +162,7 @@ The Long Short-Term Memory  model, without hyperparameter tuning, produced the f
 
 Table 1: Table displaying all of the MSE, R-Squared and Adjusted R-Squared values for each model without hyperparameter testing. The yellow highlights the top 3 models.
 
-**Hyperparameter Tuning**
+##**Hyperparameter Tuning**
 
 We ran hyperparameter testing via Grid Search for our top three models– Random Forest, XGBoost, and Gradient Boosting. We tested different hyperparameter options using Grid Search since it is an exhaustive search to find the best choices for the given models.
 
@@ -186,7 +186,7 @@ Here is a list of the best hyperparameters for each model after completing Grid 
 
 Table 2: Table displaying all of the MSE, R-Squared and Adjusted R-Squared values for each of the “best” models with hyperparameter testing. The yellow highlights the best model overall.
 
-_Final Model_
+###_Final Model_
 
 | Tuned Model        | MSE    | R²   | Adjusted R² |
 |--------------------|--------|------|-------------|
@@ -204,7 +204,7 @@ In Boston, the MSE increases to 187.18, indicating that the model’s prediction
 Chicago shows the highest R² value at 0.45, meaning the model explains 45% of the variance in the data for this city, which is a better fit than both LA and Boston. The MSE of 189.52, however, suggests that there is still a notable gap between the predicted and actual values, even though the model performs better in terms of explaining variance. The Adjusted R² of 0.44, while higher than the other cities, still indicates room for improvement.
 
 
-**Ensemble Method**
+##**Ensemble Method**
 
 We implemented a stacking ensemble method that combines the predictions of two hypertuned models: a Random Forest Regressor and an XGBoost Regressor. The ensemble was constructed by first generating predictions from each base model on the training and test datasets. These predictions were then used as input features for a meta-model, specifically a Linear Regression model, which was trained to learn how to best combine the outputs of the two base models.
 
@@ -219,13 +219,13 @@ As compared to the performance of the hypertuned Random Forest model alone, it b
 The Random Forest model on its own had a lower MSE and higher R² scores, indicating better accuracy and explanatory power. This suggests that the ensemble did not add significant value in this case, and combining the two models might have introduced some redundancy or reduced the focus on the stronger-performing Random Forest model.
 
 
-**Conclusion**
+##**Conclusion**
 
 This project explored the relationship between moon phases and weather patterns, aiming to assess whether lunar cycles could serve as predictors for meteorological variables such as temperature, wind speed, and precipitation. The study utilized data from three geographically and climatically diverse cities—Chicago, Boston, and Los Angeles—spanning a five-year period. After extensive data cleaning, processing, and feature selection, several machine learning models were trained, tested, and evaluated to determine their predictive capabilities.
 Initial results indicated that moon phases alone are not strong predictors of weather patterns, as their correlation with key variables was minimal. Among the eight machine learning models tested, the Random Forest model emerged as the most effective after hyperparameter tuning, achieving the lowest Root Mean Squared Error (RMSE) and the highest R² and Adjusted R² scores. While other models, such as XGBoost and Gradient Boosting, also performed reasonably well after tuning, Random Forest consistently provided the best overall metrics.
 A stacking ensemble method was implemented to combine the strengths of Random Forest and XGBoost, using a Linear Regression meta-model. However, the ensemble method did not outperform the Random Forest model alone, highlighting that combining models does not always yield superior results, especially when the base models exhibit overlapping strengths. This suggests that the Random Forest model is already capturing the dominant patterns in the data, and the ensemble added redundancy rather than improving performance.
 
-_Limitations and Future Steps_
+###_Limitations and Future Steps_
 
 This project had several limitations that might have affected the results. One of the main challenges was the weak correlation between moon phases and weather variables, which limited the potential for making meaningful predictions based on lunar cycles. Atmospheric conditions are likely influenced by more dominant factors, like seasonal changes and geography, which may overshadow any subtle effects of the moon. The dataset only included three cities, which means the findings might not fully capture the variety of weather patterns or potential lunar influences in other regions. Another limitation was the use of a simple Linear Regression model as the meta-model in the ensemble method. This approach might not have been complex enough to fully combine the strengths of the Random Forest and XGBoost models. Additionally, some important weather variables—like humidity, atmospheric pressure, and solar radiation—weren’t included, which could have provided valuable insights. Finally, the five-year timeframe, while helpful, may not have been long enough to account for longer-term trends or anomalies that could have influenced the results.
 
