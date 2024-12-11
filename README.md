@@ -110,7 +110,7 @@ Each model was evaluated based on how well it performed in terms of the predicti
 
 The Linear Regression model, without hyperparameter tuning, produced the following results: a Mean Squared Error (MSE) of 214.43, an R-squared (R²) of 0.16, and an Adjusted R-squared (Adj. R²) of 0.15. The MSE indicates that the model's predictions are relatively inaccurate, suggesting that there is room for improvement in model performance. With an R² of 0.16, the model explains about 16% of the variation in the target variable, which means it fails to capture the majority of the underlying patterns. The Adjusted R², which accounts for the number of predictors, is slightly lower, supporting the idea that while the model is making some progress, it could perform better with further tuning or alternative approaches.
 
-
+<img src="final_report_images/linear_regression.png" alt="Linear Regression Model" width="600">
 
 ### _Decision Trees_
 
