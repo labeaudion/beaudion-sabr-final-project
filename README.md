@@ -116,40 +116,46 @@ The Linear Regression model, without hyperparameter tuning, produced the followi
 
 The Decision Trees model, without hyperparameter tuning, produced the following results: a Mean Squared Error (MSE) of 285.5, an R-squared (R²) of -0.12, and an Adjusted R-squared (Adj. R²) of -0.13. The MSE indicates that the model fails to explain any meaningful variation in the target variable and actually performs worse than a simple mean-based model (which would have an R² of 0). This negative R² value indicates that the model is not capturing useful patterns in the data. With an R² of -0.12, the model explains about none of the variation in the target variable, which means it captures some patterns, but there's still a significant amount of variance left unexplained. The Adjusted R², which accounts for the number of predictors, is even lower, further suggesting that the inclusion of additional features has not improved the model's performance and may have even contributed to overfitting. These results indicate that the Decision Trees model requires significant tuning in order to improve predictive accuracy.
 
+<img src="final_report_images/decision_tress.png" alt="Decision Trees Model" width="900">
 
 ### _Random Forest_
 
 The Random Forest model, without hyperparameter tuning, produced the following results: a Mean Squared Error (MSE) of 149.97, an R-squared (R²) of 0.41, and an Adjusted R-squared (Adj. R²) of 0.41. The MSE indicates that the model's predictions are somewhat off from the actual values, suggesting there is room for improvement in accuracy. With an R² of 0.41, the model explains about 41% of the variation in the target variable, meaning it captures some of the underlying patterns but leaves a significant portion of the variance unexplained. The Adjusted R² accounts for the number of predictors and is the same as the R² in this case. This indicates that the number of features is relatively appropriate for the given data. While the model is providing some useful insights, there is still considerable potential for improvement through further tuning of the model.
 
-
+<img src="final_report_images/random_forest_initial.png" alt="Random Forest Model" width="900">
 
 ### _XGBoost_
 
 The XGBoost model, without hyperparameter tuning, produced the following results: a Mean Squared Error (MSE) of 159.06, an R-squared (R²) of 0.38, and an Adjusted R-squared (Adj. R²) of 0.37. The MSE indicates that the model's predictions are somewhat off from the actual values, showing there's potential for improvement. With an R² of 0.38, the model explains about 38% of the variation in the target variable, which means it captures some patterns, but there's still a significant amount of variance left unexplained. The Adjusted R², which accounts for the number of predictors, is slightly lower, supporting the idea that while the model is making some progress, it could perform better with further tuning or alternative approaches.
 
+<img src="final_report_images/xgboost.png" alt="XGBoost Model" width="900">
 
 
 ### _Gradient Boosting_
 
 The Gradient Boosting model, without hyperparameter tuning, produced the following results: Mean Squared Error (MSE) of 146.22, an R-squared (R²) of 0.43, and an Adjusted R-squared (Adj. R²) of 0.42. The MSE indicates that the model’s predictions are relatively close to the actual values, though there’s still some room for improvement. With an R² of 0.43, the model accounts for 43% of the variability in the target variable, suggesting that it has a moderate understanding of the data's patterns. The Adjusted R² is slightly lower, reflecting the model’s performance while accounting for the number of predictors used. Overall, while the model performs reasonably well, there is still potential for better accuracy through further optimization.
 
+<img src="final_report_images/gradient_boosting.png" alt="Gradient Boosting Model" width="900">
 
 
 ### _K-Nearest Neighbors (KNN)_
 
 The K-Nearest Neighbors (KNN) model, without hyperparameter tuning, produced the following results: Mean Squared Error (MSE) of 202.46, an R-squared (R²) of 0.21, and an Adjusted R-squared (Adj. R²) of 0.20. The high MSE suggests that the model's predictions are quite far from the actual values, indicating a need for improvement in its predictive ability. With an R² of just 0.21, the model only explains 21% of the variation in the target variable, showing that it captures only a small portion of the underlying patterns in the data. The Adjusted R², which adjusts for the number of predictors, further reflects the model's limited explanatory power. These results highlight the potential for improving the model, whether through hyperparameter tuning or exploring alternative models.
 
-
+<img src="final_report_images/knn.png" alt="K-Nearest Neighbors Model" width="900">
 
 ### _Support Vector Machine (SVM)_
 
 The Support Vector Machine model, without hyperparameter tuning, produced the following results: a Mean Squared Error (MSE) of 180.13, an R-squared (R²) of 0.30, and an Adjusted R-squared (Adj. R²) of 0.29. The MSE indicates that the model's predictions are moderately off from the actual values, suggesting there is room for improvement in predictive accuracy. With an R² of 0.30, the model explains about 30% of the variation in the target variable, meaning it captures some patterns, but still leaves a large portion of the variance unexplained. The Adjusted R², which accounts for the number of predictors, is slightly lower, further suggesting that the model is not fully utilizing the available features and could potentially benefit from additional tuning.
 
-
+<img src="final_report_images/svm.png" alt="Support Vector Machine Model" width="900">
 
 ### _Long Short-Term Memory (LSTM)_
 
 The Long Short-Term Memory  model, without hyperparameter tuning, produced the following results: a Mean Squared Error (MSE) of 247.11, an R-squared (R²) of 0.03, and an Adjusted R-squared (Adj. R²) of 0.03. The MSE indicates that the model's predictions are considerably off from the actual values, suggesting that there is significant room for improvement in accuracy. With an R² of 0.03, the model explains about 3% of the variation in the target variable, meaning it fails to capture most of the underlying patterns in the data. The Adjusted R², which takes into account the number of predictors, is the same as the R² in this case, highlighting that the model's complexity does not improve its explanatory power. This suggests that the LSTM model, as currently configured, is not effectively using the data and may require intensive tuning.
+
+<img src="final_report_images/lstm.png" alt="Long Short-Term Memory Model" width="900">
+
 
 | Model              | MSE    | R²   | Adjusted R² |
 |--------------------|--------|------|-------------|
