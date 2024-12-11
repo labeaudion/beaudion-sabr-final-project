@@ -116,7 +116,7 @@ The Linear Regression model, without hyperparameter tuning, produced the followi
 
 The Decision Trees model, without hyperparameter tuning, produced the following results: a Mean Squared Error (MSE) of 285.5, an R-squared (R²) of -0.12, and an Adjusted R-squared (Adj. R²) of -0.13. The MSE indicates that the model fails to explain any meaningful variation in the target variable and actually performs worse than a simple mean-based model (which would have an R² of 0). This negative R² value indicates that the model is not capturing useful patterns in the data. With an R² of -0.12, the model explains about none of the variation in the target variable, which means it captures some patterns, but there's still a significant amount of variance left unexplained. The Adjusted R², which accounts for the number of predictors, is even lower, further suggesting that the inclusion of additional features has not improved the model's performance and may have even contributed to overfitting. These results indicate that the Decision Trees model requires significant tuning in order to improve predictive accuracy.
 
-<img src="final_report_images/decision_tress.png" alt="Decision Trees Model" width="900">
+<img src="final_report_images/decision_trees.png" alt="Decision Trees Model" width="900">
 
 ### _Random Forest_
 
@@ -195,6 +195,8 @@ Here is a list of the best hyperparameters for each model after completing Grid 
 Table 2: Table displaying all of the MSE, R-Squared and Adjusted R-Squared values for each of the “best” models with hyperparameter testing. The yellow highlights the best model overall.
 
 ### _Final Model_
+
+<img src="final_report_images/random_forest_best.png" alt="Random Forest Model" width="900">
 
 | Tuned Model        | MSE    | R²   | Adjusted R² |
 |--------------------|--------|------|-------------|
